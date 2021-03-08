@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Document</title>
 </head>
 <body>
 
@@ -21,23 +21,15 @@
   
   </table>
 
-<button id='led' onClick="led('/relay1')">Relay 1 - </button>
+<button id='led' onClick="led()" disabled>Encender led</button>
 
-<button id='led' onClick="led('/relay2')">Relay 2</button>
+<input type="text" id='code' name="code" />
 
-<button id='led' onClick="led('/relay3')">Relay 3</button>
-
-<button id='led' onClick="led('/relay4')">Relay 4</button>
-
-<!--<input type="text" id='code' name="code" />
-
-<button id='bcodigo' onClick="sendCode()" >Enviar codigo</button> -->
+<button id='bcodigo' onClick="sendCode()" >Enviar codigo</button>
 
 <script src="https://cdn.socket.io/3.1.1/socket.io.min.js" integrity="sha384-gDaozqUvc4HTgo8iZjwth73C6dDDeOJsAgpxBcMpZYztUfjHXpzrpdrHRdVp8ySO" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf-8">
-    const ip = 'http://165.232.134.172:5000';
-    //const ip = 'http://192.168.0.102:5000';
-    var socket = io(ip);
+    var socket = io('http://127.0.0.1:5000');
 
     socket.on('connect', function() {
          socket.on('mqtt_message', (...args) => {
@@ -60,11 +52,11 @@
         //socket.emit('message', {data: 'I\'m connected!'});
     });
 
-    function led(publish){
+    function led(){
             
 	    			 //Tell the server this button was clicked and send the client id along with the message
                  //let obj =  {topic: '/led', payload: true};
-			    	 socket.emit('publish', {topic: publish, payload: true});
+				 socket.emit('publish', true);
 	         }
 
              

@@ -6,7 +6,7 @@ import json
 user1 = 'LM1993'
 user2 = 'LM1'
 
-ip ='192.168.0.102' 
+ip ='127.0.0.1' 
 code = 'CODE12345'
 
 app = Flask(__name__)
@@ -54,9 +54,9 @@ def handle_publish(json_str):
     topic = '/led'    
     payload = json_str
     #data = json.loads(json_str)
-    print('DATA topic ' + str(json_str['topic']))
+    print('DATA topic ' + str(json_str))
     #mqtt.publish(topic, payload)
-    mqtt.publish(json_str['topic'], json_str['message'])
+    #mqtt.publish(data['topic'], data['message'])
 
 @app.route('/chat')
 def chat():
@@ -78,7 +78,7 @@ def post_data():
 
         
 if __name__ == '__main__':
-    app.run(host=ip, port=5000, debug=False)
+    app.run(host=ip, port=80, debug=False)
     #app.run(debug=True)
     socketio.run(app, cors_allowed_origins="*")
 

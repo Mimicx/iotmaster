@@ -56,7 +56,7 @@ def handle_publish(json_str):
     #data = json.loads(json_str)
     print('DATA topic ' + str(json_str['topic']))
     #mqtt.publish(topic, payload)
-    mqtt.publish(json_str['topic'], json_str['message'])
+    #mqtt.publish(data['topic'], data['message'])
 
 @app.route('/chat')
 def chat():
@@ -78,7 +78,7 @@ def post_data():
 
         
 if __name__ == '__main__':
-    app.run(host=ip, port=5000, debug=False)
+    app.run(host=ip, port=5000, debug=True)
     #app.run(debug=True)
     socketio.run(app, cors_allowed_origins="*")
 
