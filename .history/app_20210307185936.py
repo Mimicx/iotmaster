@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, send, emit
 from flask_mqtt import Mqtt
 import json
 
-ip ='127.0.0.1'
+ip ='192.168.0.102'
 code = 'CODE12345'
 
 app = Flask(__name__)
@@ -75,7 +75,7 @@ def post_data():
 
         
 if __name__ == '__main__':
-    app.run(host=ip, port=80, debug=True)
+    app.run(host=ip, debug=True)
     #app.run(debug=True)
     socketio.run(app, cors_allowed_origins="*")
 

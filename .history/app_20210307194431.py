@@ -75,7 +75,7 @@ def post_data():
 
         
 if __name__ == '__main__':
-    app.run(host=ip, port=80, debug=True)
+    app.run(host=ip, debug=True)
     #app.run(debug=True)
     socketio.run(app, cors_allowed_origins="*")
 
