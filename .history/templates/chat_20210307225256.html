@@ -29,8 +29,6 @@
 
 <button id='led' onClick="led('/relay4')">Relay 4</button>
 
-<button id='led' onClick="led('/off')">Apagar todo</button>
-
 <!--<input type="text" id='code' name="code" />
 
 <button id='bcodigo' onClick="sendCode()" >Enviar codigo</button> -->
@@ -40,9 +38,15 @@
     const ip = 'http://165.232.134.172:5000';
     //const ip = 'http://192.168.0.102:5000';
     var socket = io(ip);
-    
+
     socket.on('connect', function() {
-     
+         socket.on('mqtt_message', (...args) => {
+            console.log('Message', args);
+            let button = document.getElementById("temp");
+            button.innerHTML = args[0]['payload'];
+    
+            
+        });
 
 
         socket.on('disable', (...args) => {
@@ -54,16 +58,6 @@
 
       
         //socket.emit('message', {data: 'I\'m connected!'});
-    });
-
-
-    socket.on('mqtt_message', (...args) => {
-            console.log('Message', args);
-            let button = document.getElementById("temp");
-            button.innerHTML = args[0]['payload'];
-            
-    
-            
     });
 
     function led(publish){
