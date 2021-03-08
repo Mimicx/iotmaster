@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>Temperatura: </h1> <h1 id='temp'></h1>
+<table style="width:100%" id="myTable">
+    <thead>
+        <tr>
+          <th>Grados</th>
+        </tr>
+      </thead>
+    <tbody>
+     
+    </tbody>
+  
+  </table>
+
+<button id='led' onClick="led()" disabled>Encender led</button>
+
+<input type="text" id='code' name="code" />
+
+<button id='bcodigo' onClick="sendCode()" >Enviar codigo</button>
+
+<script src="https://cdn.socket.io/3.1.1/socket.io.min.js" integrity="sha384-gDaozqUvc4HTgo8iZjwth73C6dDDeOJsAgpxBcMpZYztUfjHXpzrpdrHRdVp8ySO" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket = io('http://192.168.0.102:5000');
+
+    socket.on('connect', function() {
+         socket.on('mqtt_message', (...args) => {
+            console.log('Message', args);
+            let button = document.getElementById("temp");
+            button.innerHTML = args[0]['payload'];
+    
+            
+        });
+
+
+        socket.on('disable', (...args) => {
+            console.log(args[0]);
+            let button = document.getElementById("temp");
+            button.disabled = args[0]
+            
+        });
+
+      
+        //socket.emit('message', {data: 'I\'m connected!'});
+    });
+
+    function led(){
+            
+	    			 //Tell the server this button was clicked and send the client id along with the message
+                 //let obj =  {topic: '/led', payload: true};
+				 socket.emit('publish', true);
+	         }
+
+             
+    function sendCode(){
+            
+            //Tell the server this button was clicked and send the client id along with the message
+        //let obj =  {topic: '/led', payload: true};
+        let code = document.getElementById('code').value;        
+        socket.emit('verify', code);
+    }
+</script>
+</body>
+</html>
+
