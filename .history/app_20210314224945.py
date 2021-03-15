@@ -28,7 +28,7 @@ mqtt.subscribe('relay2')
 mqtt.subscribe('relay3')
 mqtt.subscribe('relay4')
 
-
+mqtt.subscribe('relay4')
   
 
 @mqtt.on_message()

@@ -36,16 +36,16 @@
 <h4>Brillo Buttons</h4>
 
 <h5>Luces 1</h5>
-<button id="up1" onClick="updown('brillo','12')">UP</button>
-<button id="down1" onClick="updown('brillo','7')">DOWN</button>
+<button id="up1" onClick="up('12')">UP</button>
+<button id="down1" onClick="down('7')">DOWN</button>
 
 <h5>Luces 2</h5>
-<button id="up2" onClick="updown('brillo','13')">UP</button>
-<button id="down2" onClick="updown('brillo','8')">DOWN</button>
+<button id="up2" onClick="up('13')">UP</button>
+<button id="down2" onClick="down('8')">DOWN</button>
 
 <h5>Luces 3</h5>
-<button id="up3" onClick="updown('brillo','14')">UP</button>
-<button id="down3" onClick="updown('brillo','9')">DOWN</button>
+<button id="up3" onClick="up('14')">UP</button>
+<button id="down3" onClick="down('9')">DOWN</button>
 
 
 <!--<input type="text" id='code' name="code" />
@@ -89,14 +89,6 @@
                  //let obj =  {topic: '/led', payload: true};
 			    	 socket.emit('publish', {topic: publish, payload: true});
 	         }
-
-
-      function updown(publish, payload){
-      
-      //Tell the server this button was clicked and send the client id along with the message
-          //let obj =  {topic: '/led', payload: true};
-        socket.emit('publish', {topic: publish, payload: payload});
-    }
 
              
     function sendCode(){
