@@ -6,8 +6,8 @@ import json
 user1 = 'LM1993'
 user2 = 'LM1'
 
-#ip ='192.168.15.4' 
-ip = '0.0.0.0'
+ip ='192.168.15.4' 
+#ip = '0.0.0.0'
 code = 'CODE12345'
 
 app = Flask(__name__)

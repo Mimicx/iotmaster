@@ -6,8 +6,8 @@ import json
 user1 = 'LM1993'
 user2 = 'LM1'
 
-#ip ='192.168.15.4' 
-ip = '0.0.0.0'
+ip ='192.168.15.4' 
+#ip = '0.0.0.0'
 code = 'CODE12345'
 
 app = Flask(__name__)
@@ -24,10 +24,10 @@ socketio = SocketIO(app)
 
 ######## MQTT FUNCTIONS #########
 mqtt.subscribe('temperature')
-mqtt.subscribe('relay1_server')
-mqtt.subscribe('relay2_server')
-mqtt.subscribe('relay3_server')
-mqtt.subscribe('relay4_server')
+mqtt.subscribe('relay1')
+mqtt.subscribe('relay2')
+mqtt.subscribe('relay3')
+mqtt.subscribe('relay4')
 
 
   

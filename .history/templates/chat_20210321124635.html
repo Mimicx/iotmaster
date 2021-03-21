@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>Temperatura: </h1> <h1 id='temperature'></h1>
+<h1>Temperatura: </h1> <h1 id='temp'></h1>
 <table style="width:100%" id="myTable">
     <thead>
         <tr>
@@ -21,15 +21,15 @@
   
   </table>
 
-<button id='relay1_server' onClick="led('/relay1')" >Relay 1 </button>
+<button id='led' onClick="led('/relay1')">Relay 1  </button>
 
-<button id='relay2_server' onClick="led('/relay2')">Relay 2</button>
+<button id='led' onClick="led('/relay2')">Relay 2</button>
 
-<button id='relay3_server' onClick="led('/relay3')">Relay 3</button>
+<button id='led' onClick="led('/relay3')">Relay 3</button>
 
-<button id='relay4_server' onClick="led('/relay4')">Relay 4</button>
+<button id='led' onClick="led('/relay4')">Relay 4</button>
 
-<button id='relayoff_server' onClick="led('/off')">Apagar todo</button>
+<button id='led' onClick="led('/off')">Apagar todo</button>
 
 <br>
 <hr>
@@ -54,8 +54,8 @@
 
 <script src="https://cdn.socket.io/3.1.1/socket.io.min.js" integrity="sha384-gDaozqUvc4HTgo8iZjwth73C6dDDeOJsAgpxBcMpZYztUfjHXpzrpdrHRdVp8ySO" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf-8">
-    const ip = 'http://165.232.134.172';
-    //const ip = 'http://192.168.15.4:5000';
+    //const ip = 'http://165.232.134.172';
+    const ip = 'http://192.168.15.4:5000';
     var socket = io(ip);
     
     socket.on('connect', function() {
@@ -77,20 +77,8 @@
     socket.on('mqtt_message', (...args) => {
             console.log('Message', args);
             console.log('Topic', args[0]['topic']);
-            if(args[0]['topic'] == "temperature")
-            {
-              console.log('Tempi');
-              let button = document.getElementById(args[0]['topic']);
-              button.innerHTML = args[0]['payload'];
-            }
-            else{
-              console.log('relay')
-              let btn = document.getElementById(args[0]['topic']);
-               btn.style.backgroundColor = (args[0]['payload'] == 'false')?"red":"green";
-            }
-        
-
-
+            let button = document.getElementById("temp");
+            button.innerHTML = args[0]['payload'];
             
     
             
